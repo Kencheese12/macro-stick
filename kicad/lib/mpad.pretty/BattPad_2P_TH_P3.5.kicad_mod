@@ -1,0 +1,60 @@
+(footprint "BattPad_2P_TH_P3.5"
+	(version 20241229)
+	(generator "mpad")
+	(layer "F.Cu")
+	(descr "LiPo lead solder pads, 2P, pitch 3.5. Drawn mirrored in X for back-side placement.")
+	(tags "battery pad LiPo")
+	(property "Reference" "J**"
+		(at 0 2.20)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "LiPo"
+		(at 0 3.40)
+		(layer "F.Fab")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(attr through_hole exclude_from_pos_files exclude_from_bom)
+	(fp_rect
+		(start -2.9 -1.25)
+		(end 2.9 1.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+	)
+	(fp_text user "+"
+		(at 3.60 0)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at 1.75 0)
+		(size 2 2)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "2" thru_hole circle
+		(at -1.75 0)
+		(size 2 2)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+	)
+)
