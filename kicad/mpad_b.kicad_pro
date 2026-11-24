@@ -1,0 +1,21 @@
+{
+  "board": {
+    "design_settings": {
+      "defaults": {}
+    }
+  },
+  "boards": [],
+  "cvpcb": {},
+  "libraries": {
+    "pinned_footprint_libs": [],
+    "pinned_symbol_libs": []
+  },
+  "meta": {
+    "filename": "mpad_b.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {},
+  "pcbnew": {},
+  "schematic": {},
+  "text_variables": {}
+}
