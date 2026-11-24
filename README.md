@@ -5,7 +5,7 @@
 ## 中身
 
 - `kicad/` — KiCad 10 基板データ
-  - `mpad_b.kicad_pcb` — B案の基板（部品配置済み。配線はFreeroutingで実施）
+  - `mpad_b.kicad_pcb` — B案の基板（配線済み：Freerouting自動配線＋手修正、DRCクリーン）
   - `mpad_a.kicad_pcb` — A案（参考）
   - `lib/` — 自作フットプリント（mpad.pretty）とSeeed XIAOフットプリント
   - `gen_mpad_b.py` / `gen_mpad.py` — 基板生成スクリプト（KiCad同梱Pythonで実行）
