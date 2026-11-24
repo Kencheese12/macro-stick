@@ -1,0 +1,100 @@
+// File: config/mpad.keymap
+/*
+ * レイヤー
+ *   BASE : Ctrl+C / Ctrl+V / Ctrl+Z / Ctrl+Y、エンコーダ押下=ミュート、回転=音量
+ *   SCRL : エンコーダを押している間。回転=スクロール
+ *   SYS  : KEY1+KEY4 を押している間（コンボ）。KEY2=ブートローダ、KEY3=現在のBTペア解除、ENC押下=再起動
+ *
+ * キー位置: 0=KEY1(最上段) 1=KEY2 2=KEY3 3=KEY4(最下段) 4=エンコーダ押下
+ */
+
+/* スクロール量（実機で調整。ZMK の既定は 10） */
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 10
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/pointing.h>
+
+#define BASE 0
+#define SCRL 1
+#define SYS  2
+
+/* エンコーダ回転のスクロールを1クリックで一定量にする */
+&msc {
+    acceleration-exponent = <0>;
+    time-to-max-speed-ms = <0>;
+    delay-ms = <0>;
+};
+
+/ {
+    behaviors {
+        /* 短押し(200ms未満で離す)=ミュート、押している間=SCRLレイヤー */
+        enc_ht: enc_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            hold-while-undecided;
+            bindings = <&mo>, <&kp>;
+        };
+
+        /* 回転1クリック=スクロール1回分 */
+        scroll_enc: scroll_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+            tap-ms = <20>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_sys {
+            timeout-ms = <80>;
+            key-positions = <0 3>;
+            bindings = <&mo SYS>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            display-name = "Base";
+            bindings = <
+                &kp LC(C)
+                &kp LC(V)
+                &kp LC(Z)
+                &kp PSCRN
+                &enc_ht SCRL C_MUTE
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
+        scroll_layer {
+            display-name = "Scroll";
+            bindings = <
+                &trans
+                &trans
+                &trans
+                &trans
+                &trans
+            >;
+            sensor-bindings = <&scroll_enc>;
+        };
+
+        sys_layer {
+            display-name = "System";
+            bindings = <
+                &trans
+                &bootloader
+                &bt BT_CLR
+                &trans
+                &sys_reset
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+    };
+};

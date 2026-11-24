@@ -1,0 +1,47 @@
+// File: boards/shields/mpad/mpad.overlay
+/*
+ * 縦長BTマクロパッド（B案）
+ * ダイレクト配線: スイッチ → GND、MCU 内蔵プルアップ
+ *
+ * ENC_SWAP_AB: エンコーダの回転方向が逆なら 1 にする（音量・スクロールが同時に反転）
+ * ENC_DETENTS: CKW12 の1回転あたりのクリック数（未確認・暫定 24）
+ */
+#define ENC_SWAP_AB 0
+#define ENC_DETENTS 24
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+        input-gpios
+            = <&gpio0 29 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* pos0 KEY1   D3  P0.29 */
+            , <&gpio0 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* pos1 KEY2   D4  P0.04 */
+            , <&gpio0 5  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* pos2 KEY3   D5  P0.05 */
+            , <&gpio0 3  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* pos3 KEY4   D1  P0.03 */
+            , <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   /* pos4 ENC_SW D8  P1.13 */
+            ;
+    };
+
+    encoder0: encoder {
+        compatible = "alps,ec11";
+#if ENC_SWAP_AB
+        a-gpios = <&gpio0 28 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;   /* ENC_B D2  P0.28 */
+        b-gpios = <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;   /* ENC_A D10 P1.15 */
+#else
+        a-gpios = <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;   /* ENC_A D10 P1.15 */
+        b-gpios = <&gpio0 28 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;   /* ENC_B D2  P0.28 */
+#endif
+        steps = <(ENC_DETENTS * 4)>;
+        status = "okay";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder0>;
+        triggers-per-rotation = <ENC_DETENTS>;
+    };
+};

@@ -1,0 +1,9 @@
+# File: boards/shields/mpad/mpad.zmk.yml
+file_format: "1"
+id: mpad
+name: MPad Strip
+type: shield
+requires: [seeed_xiao]
+features:
+  - keys
+  - encoder

@@ -1,0 +1,7 @@
+# File: boards/shields/mpad/Kconfig.defconfig
+if SHIELD_MPAD
+
+config ZMK_KEYBOARD_NAME
+    default "MPad Strip"
+
+endif
