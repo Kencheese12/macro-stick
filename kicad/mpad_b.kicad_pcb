@@ -427,7 +427,7 @@
 		(pad "A" thru_hole circle
 			(at 2.5 -7.5 270)
 			(size 2 2)
-			(drill oval 0.8 1.12)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "ENC_A")
@@ -436,7 +436,7 @@
 		(pad "B" thru_hole circle
 			(at -2.5 -7.5 270)
 			(size 2 2)
-			(drill oval 0.8 1.12)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "ENC_B")
@@ -445,7 +445,7 @@
 		(pad "C" thru_hole rect
 			(at 0 -7.5 270)
 			(size 2 2)
-			(drill oval 0.8 1)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "GND")
@@ -454,7 +454,7 @@
 		(pad "S1" thru_hole circle
 			(at 2.5 7 270)
 			(size 2 2)
-			(drill oval 0.8 1.12)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "ENC_SW")
@@ -463,7 +463,7 @@
 		(pad "S2" thru_hole circle
 			(at -2.5 7 270)
 			(size 2 2)
-			(drill oval 0.8 1.12)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "GND")
@@ -1413,6 +1413,14 @@
 		(uuid "f644a99a-7474-422f-95e6-26a629b513ff")
 	)
 	(via
+		(at 109.5 160.8)
+		(size 0.6)
+		(drill 0.3)
+		(layers "F.Cu" "B.Cu")
+		(net "GND")
+		(uuid "31bb145d-aa18-45ae-9e22-fe43bb62d6e0")
+	)
+	(via
 		(at 113.5 113)
 		(size 0.6)
 		(drill 0.3)
@@ -1429,6 +1437,14 @@
 		(uuid "4636dbc8-6d10-46b3-9c3f-8ac26284ce8c")
 	)
 	(via
+		(at 109.5 141.75)
+		(size 0.6)
+		(drill 0.3)
+		(layers "F.Cu" "B.Cu")
+		(net "GND")
+		(uuid "5006369e-4840-4ec9-8810-84261a9f5df2")
+	)
+	(via
 		(at 118 164)
 		(size 0.6)
 		(drill 0.3)
@@ -1443,6 +1459,14 @@
 		(layers "F.Cu" "B.Cu")
 		(net "GND")
 		(uuid "88ef93a7-b397-44b1-abe8-753d36c66cf3")
+	)
+	(via
+		(at 109.5 179.85)
+		(size 0.6)
+		(drill 0.3)
+		(layers "F.Cu" "B.Cu")
+		(net "GND")
+		(uuid "89c77231-3712-4930-a042-f9e4ff7b07a5")
 	)
 	(via
 		(at 118 183)
